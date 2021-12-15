@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  nodejs:
+    build:
+        context: .
+        dockerfile: node_Dockerfile
+    container_name : nodejs
+    volumes:
+      - .:/usr/src/app:z    
+    mem_limit: "1g"
+    expose:
+      - "3000"
+  nginx:
+    build:
+        context: .
+        dockerfile: nginx_Dockerfile
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports: 
+        - "2121:80"
+    mem_limit: "1g"
+    depends_on:
+      - nodejs
+
+#wsl2방식은 도커를 돌리다보면
+#용량이 한도 끝도없이 늘어남.
+#mem_limit으로 용량제한.
+
+#expose:
+# - "${port_num}"
+#도커 내부에서 컨테이너의 port_num을 노출시킴
+
+#port:
+# - "${host_port}:${container_port}"
+# - 호스트의 포트와 컨테이너의 포트를 연결시킴.
+
+#volume:
+# - ${host_directory}:${container_directory}
+# 호스트의 디렉토리와 컨테이너의 디렉토리를 연동시킴.
+# 실시간 반영이되나
+# nginx와 같은 경우는 config파일을 수정해도
+# 자동으로 재시작이 안되니
+# 컨테이너를 껐다켜주거나 다시 컴포즈를 해야됨.
