@@ -5,5 +5,10 @@
 ### 꼭 확인하고 수정해야 되는 파일
 - docker-compose.yml
 - nginx_Dockerfile
-- node_dockerfile
+- node_Dockerfile
+    - 서버를 실행시키는 ENTRYPOINT명령어가 있습니다.
 - nginx.conf
+    - 어플리케이션 별 라우팅을 설정해주어야합니다.
+
+### 각 도커파일들은 node와 nginx가 최신버전으로 설정 되어있습니다.
+### 사용하는 버전에 맞게 바꿔라.
