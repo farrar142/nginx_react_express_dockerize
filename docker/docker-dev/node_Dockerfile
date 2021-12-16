@@ -4,11 +4,10 @@ LABEL Farrar142 "gksdjf1690@gmail.com"
 
 WORKDIR /usr/src/app
 
-COPY package.json .
-RUN npm install
+# COPY package.json .
+# RUN npm install
 # package.json에 있는 의존성 파일들을 다운로드함.
-COPY . .
+# COPY . .
 EXPOSE 3000
 #ENTRYPOINT ["node","server.js"]
-ENTRYPOINT ["npm", "start"]
 ##실행 명령어 리스트 형식으로 작성
